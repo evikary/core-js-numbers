@@ -324,8 +324,16 @@ function getSumOfDigits(num) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  for (let i = 1; i <= num; i += 1) {
+    if (2 ** i > num) {
+      return false;
+    }
+    if (2 ** i === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -353,8 +361,8 @@ function getSine(num) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return number.toString(base);
 }
 
 /**
@@ -432,8 +440,8 @@ function getNumberValue(number) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  return !Number.isNaN(number) && Number.isFinite(number);
 }
 
 /**
@@ -461,8 +469,8 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
@@ -479,8 +487,8 @@ function getFloatOnString(/* str */) {
  * '1.234', 2           => 1
  * '10', 8              => 1
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -616,8 +624,18 @@ function getRandomInteger(min, max) {
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  // variant 1
+  // throw new Error('Not implemented');
+  // const res = Math.sqrt(a ** 2 + b ** 2);
+  // return res;
+  // variant 2
+  // const max = Math.max(a, b);
+  // const min = Math.min(a, b);
+  // const r = Math.abs(min / max);
+  // return max * Math.sqrt(1 + r * r);
+  // variant 3
+  return Math.hypot(a, b);
 }
 
 /**
@@ -635,23 +653,9 @@ function getHypotenuse(/* a, b */) {
  */
 function getCountOfOddNumbers(number) {
   let count = 0;
-  if (number > 0) {
-    for (let i = 0; i < number; i += 1) {
-      if (i % 2 === 0) {
-        count += 1;
-      }
-    }
-  } else if (number < 0 && number % 2 === 0) {
-    for (let i = number; i < 0; i += 1) {
-      if (i % 2 === 0) {
-        count += 1;
-      }
-    }
-  } else {
-    for (let i = number; i <= 0; i += 1) {
-      if (i % 2 === 0) {
-        count += 1;
-      }
+  for (let i = 0; i <= Math.abs(number); i += 1) {
+    if (i % 2 !== 0) {
+      count += 1;
     }
   }
   return count;
