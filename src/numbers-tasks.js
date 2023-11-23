@@ -700,4 +700,3 @@ module.exports = {
   getHypotenuse,
   getCountOfOddNumbers,
 };
-console.log(typeof alert);
